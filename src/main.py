@@ -6,7 +6,7 @@ import os
 import requests
 import urllib
 
-import settings
+from src import settings
 
 mastodon = Mastodon(
     access_token=os.getenv("ACCESS_TOKEN"),
