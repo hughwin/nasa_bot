@@ -1,4 +1,4 @@
-from datetime import time
+import time
 
 import schedule as schedule
 from mastodon import Mastodon
@@ -40,3 +40,7 @@ def toot_image_of_the_day():
         mastodon.status_post(status=message, media_ids=image_dict)
     except requests.exceptions.RequestException as e:
         print(e)
+
+
+if __name__ == "__main__":
+    main()
