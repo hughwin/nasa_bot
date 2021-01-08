@@ -18,6 +18,7 @@ def main():
     schedule.every().day.at("10:30").do(toot_image_of_the_day)
     while True:
         schedule.run_pending()
+        print("Thinking...")
         time.sleep(2)
 
 
