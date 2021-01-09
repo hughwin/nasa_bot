@@ -15,6 +15,7 @@ mastodon = Mastodon(
 
 
 def main():
+    os.makedirs(str(settings.DAILY_DIR), exist_ok=True)
     schedule.every().day.at("10:30").do(toot_image_of_the_day)
     while True:
         schedule.run_pending()
