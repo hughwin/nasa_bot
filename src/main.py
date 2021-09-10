@@ -2,6 +2,7 @@ import time
 
 import schedule as schedule
 from mastodon import Mastodon
+from datetime import date
 import os
 import requests
 import urllib
@@ -37,7 +38,8 @@ def toot_image_of_the_day():
         description = json["title"]
         image_dict = mastodon.media_post(settings.DAILY_IMAGE, description=description)
         print(image_dict)
-        message = "Here is today's image! " + description
+        today = date.today()
+        message = today.strftime("%d/%m/%Y") + ": " + description
         mastodon.status_post(status=message, media_ids=image_dict)
     except requests.exceptions.RequestException as e:
         print(e)
