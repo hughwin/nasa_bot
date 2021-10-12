@@ -24,16 +24,11 @@ def main():
 
 
 def toot_image_of_the_day():
-    """Method to toot a daily picture of the universe.
-
-    This function exists to toot a picture of the universe to the instance the bot is running on. This is done to
-    advertise the bot and to give users who are using the bot (maybe for the first time) the confidence that the bot
-    is still running.
-    """
     try:
         r = requests.get(settings.NASA_ADDRESS_IMAGES % os.getenv("NASA"))
         json = r.json()
-        urllib.request.urlretrieve(json["hdurl"], settings.DAILY_IMAGE)
+        urllib.request.urlretrieve(json["url"], settings.DAILY_IMAGE) # There seems to be an issue caused by using
+        # the "hdurl option that causes the bot to crash. 
         description = json["title"]
         image_dict = mastodon.media_post(settings.DAILY_IMAGE, description=description)
         print(image_dict)
