@@ -28,7 +28,7 @@ def toot_image_of_the_day():
         r = requests.get(settings.NASA_ADDRESS_IMAGES % os.getenv("NASA"))
         json = r.json()
         urllib.request.urlretrieve(json["url"], settings.DAILY_IMAGE) # There seems to be an issue caused by using
-        # the "hdurl option that causes the bot to crash. 
+        # the "hdurl option that causes the bot to crash.
         description = json["title"]
         image_dict = mastodon.media_post(settings.DAILY_IMAGE, description=description)
         print(image_dict)
